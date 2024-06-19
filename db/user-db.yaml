@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -24,23 +25,23 @@ spec:
         - name: MONGODB_USER
           valueFrom:
             secretKeyRef:
-	      name: my-secret
-	      key: MONGODB_USER
+              name: my-secret
+              key: MONGODB_USER
         - name: MONGODB_PASSWORD
           valueFrom:
             secretKeyRef:
-	      name: my-secret
-	      key: MONGODB_PASSWORD
+              name: my-secret
+              key: MONGODB_PASSWORD
         - name: MONGODB_DATABASE
           valueFrom:
             secretKeyRef:
-	      name: my-secret
-	      key: MONGODB_DATABASE
+              name: my-secret
+              key: MONGODB_DATABASE
         - name: MONGODB_ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
-	      name: my-secret
-	      key: MONGODB_ADMIN_PASSWORD
+              name: my-secret
+              key: MONGODB_ADMIN_PASSWORD
       volumes:
       - name: mydb-data
         persistentVolumeClaim:
