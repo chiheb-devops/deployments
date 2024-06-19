@@ -1,0 +1,48 @@
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: userdb
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: userdb
+  template:
+    metadata:
+      labels:
+        app: userdb
+    spec:
+      containers:
+      - name: mydb
+        image: mosuke5/sockshop-user-db@sha256:7633a123fe2a1e6191fd37cad6d4f07bfb2acdc3a634e27c226df3ae21357da0
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+      - name: mydb-data
+        persistentVolumeClaim:
+          claimName: userdb-pvc
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MONGODB_USER
+          valueFrom:
+              secretKeyRef:
+		name: my-secret
+		key: MONGODB_USER
+        - name: MONGODB_PASSWORD
+          valueFrom:
+              secretKeyRef:
+		name: my-secret
+		key: MONGODB_PASSWORD
+        - name: MONGODB_DATABASE
+          valueFrom:
+              secretKeyRef:
+		name: my-secret
+		key: MONGODB_DATABASE
+        - name: MONGODB_ADMIN_PASSWORD
+          valueFrom:
+              secretKeyRef:
+		name: my-secret
+		key: MONGODB_ADMIN_PASSWORD
