@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -28,21 +27,21 @@ spec:
         env:
         - name: MONGODB_USER
           valueFrom:
-              secretKeyRef:
-		name: my-secret
-		key: MONGODB_USER
+            secretKeyRef:
+	      name: my-secret
+	      key: MONGODB_USER
         - name: MONGODB_PASSWORD
           valueFrom:
-              secretKeyRef:
-		name: my-secret
-		key: MONGODB_PASSWORD
+            secretKeyRef:
+	      name: my-secret
+	      key: MONGODB_PASSWORD
         - name: MONGODB_DATABASE
           valueFrom:
-              secretKeyRef:
-		name: my-secret
-		key: MONGODB_DATABASE
+            secretKeyRef:
+	      name: my-secret
+	      key: MONGODB_DATABASE
         - name: MONGODB_ADMIN_PASSWORD
           valueFrom:
-              secretKeyRef:
-		name: my-secret
-		key: MONGODB_ADMIN_PASSWORD
+            secretKeyRef:
+	      name: my-secret
+	      key: MONGODB_ADMIN_PASSWORD
