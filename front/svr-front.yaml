@@ -5,11 +5,12 @@ metadata:
   labels:
     name: front-end
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: web
       port: 80
       targetPort: 8079
       protocol: TCP
+      nodePort: 30250
   selector:
     name: front-end
